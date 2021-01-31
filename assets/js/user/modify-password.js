@@ -26,11 +26,13 @@ $(function() {
                     return layer.msg('密码修改失败！')
                 }
                 // 检验请求成功
-                layer.msg('密码修改成功！');
+                layer.msg('密码修改成功！', { time: 1000 }, function() {
+                    // 跳转到首页
+                    window.parent.location.href = '../login.html';
+                });
                 // $(this)[0].reset();
 
-                // 跳转到首页
-                window.parent.location.href('../login.js');
+
 
                 // 原先token令牌清除掉
                 localStorage.removeItem('token');
