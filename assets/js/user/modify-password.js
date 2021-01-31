@@ -30,7 +30,10 @@ $(function() {
                 // $(this)[0].reset();
 
                 // 跳转到首页
-                window.parent.location.href('../login.js')
+                window.parent.location.href('../login.js');
+
+                // 原先token令牌清除掉
+                localStorage.removeItem('token');
 
             })
     })
