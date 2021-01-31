@@ -1,0 +1,28 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 15px;
+    background-color: #f2f3f5;
+}
+
+
+/*
+	在 `layui-card-header`里面添加右侧的按钮
+	给 `layui-card-header` 设置成flex 布局，让里面内容两侧对齐 
+	`justify-content: space-between`
+*/
+
+.layui-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.layui-form {
+    padding-top: 25px;
+    padding-right: 30px;
+}
