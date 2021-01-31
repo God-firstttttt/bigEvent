@@ -26,8 +26,12 @@ $(function() {
                     return layer.msg('密码修改失败！')
                 }
                 // 检验请求成功
-                layer.msg('密码修改成功！')
-                $(this)[0].reset();
+                layer.msg('密码修改成功！');
+                // $(this)[0].reset();
+
+                // 跳转到首页
+                window.parent.location.href('../login.js')
+
             })
     })
 

@@ -5,7 +5,7 @@ const { layer } = layui;
 function getUserInfo() {
 
     axios.get('/my/userinfo').then(res => {
-        console.log(res);
+        // console.log(res);
         // 先判断获取信息是否失败
         if (res.status !== 0) {
             return layer.msg('获取用户信息失败！');
