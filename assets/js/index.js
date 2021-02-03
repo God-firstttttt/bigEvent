@@ -33,8 +33,11 @@ getUserInfo();
 // 点击退出
 $('#logout').click(function() {
     // 请求接口（模拟）
-    // 清除本地token令牌
-    localStorage.removeItem('token');
-    // 跳转到登录页
-    location.href = './login.html';
+    layer.confirm('确认退出?', { icon: 3, title: '提示' }, function(index) {
+        // 清除本地token令牌
+        localStorage.removeItem('token');
+        // 跳转到登录页
+        location.href = './login.html';
+    })
+
 })
