@@ -1,5 +1,11 @@
 $(function() {
     const { form, laypage } = layui;
+    // 定义一个全局状态变量
+    let state = '';
+    // 接收列表页传来的查询参数
+    console.log(location.search);
+
+
     // 从服务器获取文章的分类列表数据
     function grtCateList() {
         axios.get('/my/article/cates')
@@ -14,7 +20,7 @@ $(function() {
                     $('#cate-sel').append(`<option value="${item.Id}">${item.name}</option>`);
 
                 });
-                // 一定要记得调用 form.render() 方法
+                // 一定要记得调用 form.render() 方法,不然页面没效果
                 form.render();
             })
 
@@ -38,6 +44,10 @@ $(function() {
                 if (res.status !== 0) {
                     return layer.msg('获取失败!')
                 }
+                // 调用模板函数之前去注册过滤器
+                template.defaults.imports.dateFormat = function(date) {
+                    return moment(date).format('YYYY/MM/DD HH:mm:ss')
+                };
                 // 调用渲染引擎
                 const htmlStr = template('tpl', res);
                 // 添加到tbody中
@@ -87,6 +97,9 @@ $(function() {
         query.cate_id = cate_id;
         query.state = state;
 
+        // 将pagenum归一，每次改变筛选条件，都调到第一页
+        query.pagenum = 1;
+
         renderTable()
     });
 
@@ -113,6 +126,17 @@ $(function() {
 
                 })
         })
+
+    });
+
+    // 点击编辑按钮，跳转到文章编辑页面
+    $(document).on('click', '.edit-btn', function() {
+        // 获取当前文章id
+        const id = $(this).data('id');
+        // 在两个文章页面之间进行数据传递：？
+        location.href = `./edit.html?id=${id}`;
+        // 左边导航条更新
+        window.parent.$('.layui-this').next().find('a').click();
 
     })
 
